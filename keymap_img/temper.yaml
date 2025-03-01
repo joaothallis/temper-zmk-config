@@ -26,7 +26,7 @@ layers:
     - {t: ⇧, s: ⇪}
     - SPACE
     - nav
-    - {t: BACKSPACE, s: Alt+ BACKSPACE}
+    - {t: BACKSPACE, s: Alt+BACKSPACE}
   qwerty:
   - [Q, W, E, R, T, Y, U, I, O, P]
   - - A
@@ -93,7 +93,7 @@ layers:
     - HOME
     - END
     - ↹
-    - {t: BACKSPACE, s: Alt+ BACKSPACE}
+    - {t: BACKSPACE, s: Alt+BACKSPACE}
   - - {t: ⇧, h: sticky}
     - {t: ⌃, h: sticky}
     - {t: ⎇, h: sticky}
