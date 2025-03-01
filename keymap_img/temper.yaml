@@ -26,41 +26,32 @@ layers:
     - {t: ⇧, s: ⇪}
     - SPACE
     - nav
-    - {t: default, h: toggle}
-  game:
-  - - ↹
-    - Q
-    - W
-    - E
-    - R
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - ⇧
-    - A
+    - {t: BACKSPACE, s: Alt+ BACKSPACE}
+  qwerty:
+  - [Q, W, E, R, T, Y, U, I, O, P]
+  - - A
     - S
     - D
     - F
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - ⌃
-    - Z
+    - G
+    - H
+    - J
+    - K
+    - L
+    - {t: ;, s: ':'}
+  - - Z
     - X
     - C
     - V
+    - B
+    - N
+    - M
+    - {t: ',', s: <}
+    - {t: ., s: '>'}
+    - /
+  - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - ESC
-    - {t: ▽, type: trans}
-    - SPACE
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -98,23 +89,23 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
-    - DEL
+    - {t: ▽, type: trans}
     - HOME
     - END
     - ↹
-    - BSPC
+    - {t: BACKSPACE, s: Alt+ BACKSPACE}
   - - {t: ⇧, h: sticky}
     - {t: ⌃, h: sticky}
     - {t: ⎇, h: sticky}
     - {t: ⌘, h: sticky}
-    - {t: ▽, type: trans}
+    - ↹
     - ←
     - ↓
     - ↑
     - →
     - {t: ESC, s: '`'}
   - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
+    - DEL
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -130,11 +121,11 @@ layers:
     - {type: held}
     - {t: ▽, type: trans}
   fun:
-  - - {t: game, h: toggle}
+  - - {t: qwerty, h: toggle}
     - MUTE
     - VOL DN
     - VOL UP
-    - OUT USB
+    - OUT TOG
     - {t: ▽, type: trans}
     - F7
     - F8
@@ -154,7 +145,7 @@ layers:
     - PREV
     - PP
     - NEXT
-    - OUT BLE
+    - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - F1
     - F2
