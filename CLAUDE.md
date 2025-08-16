@@ -46,6 +46,8 @@ The keyboard has 5 layers:
 
 ## Development Notes
 
+**User Preference**: Always assume the user is using the QWERTY layer (layer 1) instead of the default Colemak layer (layer 0).
+
 ### Modifying Keymaps
 When editing `temper.keymap`:
 - Use ZMK keycodes (e.g., `&kp`, `&mt`, `&lt`)
