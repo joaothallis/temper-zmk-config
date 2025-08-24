@@ -70,14 +70,13 @@ Custom behaviors are defined in the keymap file's top section. Follow existing p
 1. **Build firmware** (automatic via GitHub Actions):
    - Push changes to GitHub repository
    - GitHub Actions automatically builds firmware
-   - Go to Actions tab → find latest successful build
+   - Go to Actions tab on **joaothallis/temper-zmk-config** (NOT upstream repo)
+   - Find latest successful build
    - Download firmware artifacts (contains `temper_left.uf2` and `temper_right.uf2`)
 
 2. **Flash each keyboard half**:
    - Connect keyboard half via USB
-   - Enter bootloader mode: 
-     - **Left half**: triple-tap reset button quickly
-     - **Right half**: double-tap reset button quickly
+   - Enter bootloader mode: double-tap reset button quickly
    - ProMicro NRF52840 appears as USB drive (typically "NICENANO" or "NRF52BOOT")
    - LED indicator shows bootloader mode (usually blue or red)
    
@@ -105,6 +104,30 @@ Custom behaviors are defined in the keymap file's top section. Follow existing p
    - Both halves should reconnect automatically
    - Test new keybindings/features
    - If issues occur, reflash with previous working firmware
+
+### Troubleshooting
+
+**Only one half working after flash:**
+- Check TRRS cable connection - ensure it's fully inserted and clicked in on both sides
+- Try unplugging and reconnecting the TRRS cable
+- Re-flash the non-working half - the flash may have failed
+- Power cycle: unplug USB, wait 5 seconds, plug back in
+
+**Bootloader not detected:**
+- Try different USB cable (some are power-only)
+- Try different USB port
+- Use double-tap reset button (not triple-tap)
+- Check toggle switches on keyboard if present
+
+**Downloaded wrong firmware:**
+- Always download from **joaothallis/temper-zmk-config** Actions tab
+- NOT from upstream repo (raeedcho/temper-zmk-config)
+- Use latest successful build, not older builds
+
+**Flash appears to fail with I/O error:**
+- This is normal! I/O errors during UF2 flash usually indicate success
+- The drive auto-ejects when flash completes, causing the "error"
+- Check if drive disappeared - this confirms successful flash
 
 ### Common Tasks
 - **Toggle QWERTY layer**: Defined on FUN layer

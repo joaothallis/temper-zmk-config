@@ -50,11 +50,7 @@ if [ ! -f "$UF2_FILE" ]; then
 fi
 
 echo -e "${YELLOW}Waiting for bootloader...${NC}"
-if [ "$PART" = "left" ]; then
-    echo -e "Please ${GREEN}triple-tap${NC} the reset button on the ${GREEN}${PART}${NC} half of your keyboard"
-else
-    echo -e "Please ${GREEN}double-tap${NC} the reset button on the ${GREEN}${PART}${NC} half of your keyboard"
-fi
+echo -e "Please ${GREEN}double-tap${NC} the reset button on the ${GREEN}${PART}${NC} half of your keyboard"
 
 # Wait for bootloader to appear
 BOOTLOADER_FOUND=false
