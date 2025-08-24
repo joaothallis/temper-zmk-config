@@ -1,34 +1,6 @@
 layout: {zmk_keyboard: temper}
 layers:
   default:
-  - - Q
-    - W
-    - F
-    - P
-    - B
-    - J
-    - L
-    - U
-    - Y
-    - {t: '''', s: '"'}
-  - [A, R, S, T, G, M, N, E, I, O]
-  - - Z
-    - X
-    - C
-    - D
-    - V
-    - K
-    - H
-    - {t: ',', s: ;}
-    - {t: ., s: ':'}
-    - {t: '?', s: '!'}
-  - - ⌘
-    - num
-    - {t: ⇧, s: ⇪}
-    - SPACE
-    - nav
-    - {t: BACKSPACE, s: Alt+BACKSPACE}
-  qwerty:
   - [Q, W, E, R, T, Y, U, I, O, P]
   - - A
     - S
@@ -50,6 +22,34 @@ layers:
     - {t: ',', s: <}
     - {t: ., s: '>'}
     - /
+  - - ⌘
+    - num
+    - {t: ⇧, s: ⇪}
+    - SPACE
+    - nav
+    - {t: BACKSPACE, s: Alt+BACKSPACE}
+  colemak:
+  - - Q
+    - W
+    - F
+    - P
+    - B
+    - J
+    - L
+    - U
+    - Y
+    - {t: '''', s: '"'}
+  - [A, R, S, T, G, M, N, E, I, O]
+  - - Z
+    - X
+    - C
+    - D
+    - V
+    - K
+    - H
+    - {t: ',', s: ;}
+    - {t: ., s: ':'}
+    - {t: '?', s: '!'}
   - - {t: ▽, type: trans}
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
@@ -122,7 +122,7 @@ layers:
     - {type: held}
     - {t: ▽, type: trans}
   fun:
-  - - {t: qwerty, h: toggle}
+  - - {t: colemak, h: toggle}
     - MUTE
     - VOL DN
     - VOL UP
