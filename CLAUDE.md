@@ -61,10 +61,50 @@ Custom behaviors are defined in the keymap file's top section. Follow existing p
 - Conditional layer definitions
 
 ### Hardware Configuration
-- Controller: nice!nano v2
-- Display: 128x32 OLED (optional)
-- RGB: WS2812 underglow with 10 LEDs (optional)
+- Controller: ProMicro NRF52840
+- Display: None
+- RGB: None
 - Split: Left half is primary/central
+
+### Firmware Update Process
+1. **Build firmware** (automatic via GitHub Actions):
+   - Push changes to GitHub repository
+   - GitHub Actions automatically builds firmware
+   - Go to Actions tab → find latest successful build
+   - Download firmware artifacts (contains `temper_left.uf2` and `temper_right.uf2`)
+
+2. **Flash each keyboard half**:
+   - Connect keyboard half via USB
+   - Enter bootloader mode: 
+     - **Left half**: triple-tap reset button quickly
+     - **Right half**: double-tap reset button quickly
+   - ProMicro NRF52840 appears as USB drive (typically "NICENANO" or "NRF52BOOT")
+   - LED indicator shows bootloader mode (usually blue or red)
+   
+   **GUI method**:
+   - Drag appropriate `.uf2` file to the drive:
+     - Left half: `temper_left.uf2`
+     - Right half: `temper_right.uf2`
+   
+   **Command line method**:
+   ```bash
+   # Check if bootloader is mounted
+   ls /Volumes/ | grep -E 'NICENANO|NRF52BOOT'
+   
+   # Flash firmware (example for left half)
+   cp ~/Downloads/temper_left.uf2 /Volumes/NICENANO/
+   
+   # Monitor for bootloader (useful for troubleshooting)
+   watch -n 0.5 "ls /Volumes/ | grep -E 'NICENANO|NRF52BOOT'"
+   ```
+   
+   - Drive automatically ejects and keyboard reboots
+   - Repeat process for other half
+
+3. **Verify installation**:
+   - Both halves should reconnect automatically
+   - Test new keybindings/features
+   - If issues occur, reflash with previous working firmware
 
 ### Common Tasks
 - **Toggle QWERTY layer**: Defined on FUN layer

@@ -1,0 +1,113 @@
+#!/bin/bash
+
+# Script to flash Temper keyboard firmware
+# Usage: ./flash_keyboard firmware.zip left|right
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Check arguments
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <firmware.zip> <left|right>"
+    echo "Example: $0 firmware.zip left"
+    exit 1
+fi
+
+ZIP_FILE="$1"
+PART="$2"
+
+# Validate zip file exists
+if [ ! -f "$ZIP_FILE" ]; then
+    echo -e "${RED}Error: File '$ZIP_FILE' not found${NC}"
+    exit 1
+fi
+
+# Validate part argument
+if [ "$PART" != "left" ] && [ "$PART" != "right" ]; then
+    echo -e "${RED}Error: Part must be 'left' or 'right'${NC}"
+    exit 1
+fi
+
+# Create temp directory for extraction
+TEMP_DIR=$(mktemp -d)
+trap "rm -rf $TEMP_DIR" EXIT
+
+echo -e "${YELLOW}Extracting firmware...${NC}"
+unzip -q "$ZIP_FILE" -d "$TEMP_DIR"
+
+# Find the UF2 file for the specified part
+UF2_FILE="$TEMP_DIR/temper_${PART}.uf2"
+if [ ! -f "$UF2_FILE" ]; then
+    echo -e "${RED}Error: temper_${PART}.uf2 not found in zip file${NC}"
+    echo "Contents of zip:"
+    ls -la "$TEMP_DIR"
+    exit 1
+fi
+
+echo -e "${YELLOW}Waiting for bootloader...${NC}"
+if [ "$PART" = "left" ]; then
+    echo -e "Please ${GREEN}triple-tap${NC} the reset button on the ${GREEN}${PART}${NC} half of your keyboard"
+else
+    echo -e "Please ${GREEN}double-tap${NC} the reset button on the ${GREEN}${PART}${NC} half of your keyboard"
+fi
+
+# Wait for bootloader to appear
+BOOTLOADER_FOUND=false
+for i in {1..30}; do
+    if ls /Volumes/ | grep -qE 'NICENANO|NRF52BOOT'; then
+        BOOTLOADER_FOUND=true
+        BOOTLOADER_NAME=$(ls /Volumes/ | grep -E 'NICENANO|NRF52BOOT' | head -n1)
+        break
+    fi
+    printf "."
+    sleep 1
+done
+echo
+
+if [ "$BOOTLOADER_FOUND" = false ]; then
+    echo -e "${RED}Error: Bootloader not detected after 30 seconds${NC}"
+    echo "Please ensure:"
+    echo "  1. The keyboard is connected via USB"
+    echo "  2. You triple-tap the reset button quickly"
+    echo "  3. The bootloader appears as a drive"
+    exit 1
+fi
+
+echo -e "${GREEN}Bootloader detected: $BOOTLOADER_NAME${NC}"
+
+# Flash the firmware
+echo -e "${YELLOW}Flashing firmware to ${PART} half...${NC}"
+
+# Copy firmware - I/O error is expected as device auto-ejects during flash
+if cp "$UF2_FILE" "/Volumes/$BOOTLOADER_NAME/" 2>/dev/null; then
+    echo -e "${GREEN}Firmware copied successfully${NC}"
+else
+    # I/O error during copy usually means successful flash (device ejected)
+    if [ $? -eq 1 ]; then
+        # Check if drive disappeared (indicates successful flash)
+        sleep 0.5
+        if ! ls /Volumes/ | grep -q "$BOOTLOADER_NAME" 2>/dev/null; then
+            echo -e "${GREEN}✓ Firmware flashed successfully!${NC}"
+            echo -e "The ${PART} half should now reboot with the new firmware."
+            exit 0
+        fi
+    fi
+fi
+
+# Wait for drive to disappear (indicates successful flash)
+for i in {1..10}; do
+    if ! ls /Volumes/ | grep -q "$BOOTLOADER_NAME" 2>/dev/null; then
+        echo -e "${GREEN}✓ Firmware flashed successfully!${NC}"
+        echo -e "The ${PART} half should now reboot with the new firmware."
+        exit 0
+    fi
+    sleep 1
+done
+
+echo -e "${YELLOW}Warning: Drive didn't auto-eject, but firmware may still have been flashed${NC}"
+echo "Please check if your keyboard is working with the new firmware."
