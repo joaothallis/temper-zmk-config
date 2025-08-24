@@ -32,7 +32,7 @@ layers:
   - [Q, W, E, R, T, Y, U, I, O, P]
   - - A
     - S
-    - D
+    - {t: D, h: ⌃}
     - F
     - G
     - H
