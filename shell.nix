@@ -4,9 +4,12 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     python3Packages.west
     python3
+    python3Packages.pyelftools
     cmake
     ninja
     dtc
+    gcc-arm-embedded
+    gcc
   ];
 
   shellHook = ''

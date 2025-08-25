@@ -67,38 +67,51 @@ Custom behaviors are defined in the keymap file's top section. Follow existing p
 - Split: Left half is primary/central
 
 ### Firmware Update Process
-1. **Build firmware** (automatic via GitHub Actions):
+1. **Build firmware**:
+   
+   **Local build (preferred for development)**:
+   ```bash
+   # Build locally using nix shell
+   nix-shell shell.nix --run "export CMAKE_PREFIX_PATH=\$CMAKE_PREFIX_PATH:$(pwd)/zephyr/share/zephyr-package/cmake && export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb && export GNUARMEMB_TOOLCHAIN_PATH=/nix/store/.../gcc-arm-embedded-... && export CC=.../bin/arm-none-eabi-gcc && west build -s zmk/app -b nice_nano_v2 -d build/left -- -DSHIELD=temper_left -DZMK_CONFIG=$(pwd)"
+   
+   # Or for both halves
+   west build -s zmk/app -b nice_nano_v2 -d build/right -- -DSHIELD=temper_right -DZMK_CONFIG=$(pwd)
+   ```
+   
+   **GitHub Actions build**:
    - Push changes to GitHub repository
    - GitHub Actions automatically builds firmware
    - Go to Actions tab on **joaothallis/temper-zmk-config** (NOT upstream repo)
    - Find latest successful build
    - Download firmware artifacts (contains `temper_left.uf2` and `temper_right.uf2`)
 
-2. **Flash each keyboard half**:
-   - Connect keyboard half via USB
-   - Enter bootloader mode: double-tap reset button quickly
-   - ProMicro NRF52840 appears as USB drive (typically "NICENANO" or "NRF52BOOT")
-   - LED indicator shows bootloader mode (usually blue or red)
+2. **Flash firmware using the script**:
+   **IMPORTANT: When asked to flash firmware, always use the `flash_keyboard` script**
    
-   **GUI method**:
-   - Drag appropriate `.uf2` file to the drive:
-     - Left half: `temper_left.uf2`
-     - Right half: `temper_right.uf2`
+   ```bash
+   # Flash from local build
+   ./flash_keyboard build/left/zephyr/zmk.uf2 left
+   ./flash_keyboard build/right/zephyr/zmk.uf2 right
    
-   **Command line method**:
+   # Flash from GitHub Actions zip
+   ./flash_keyboard firmware.zip left
+   ./flash_keyboard firmware.zip right
+   ```
+   
+   The script will:
+   - Wait for bootloader (double-tap reset button)
+   - Detect the bootloader drive automatically
+   - Copy firmware and handle auto-eject
+   - Provide clear status messages
+   
+   **Manual method (fallback only)**:
    ```bash
    # Check if bootloader is mounted
    ls /Volumes/ | grep -E 'NICENANO|NRF52BOOT'
    
    # Flash firmware (example for left half)
-   cp ~/Downloads/temper_left.uf2 /Volumes/NICENANO/
-   
-   # Monitor for bootloader (useful for troubleshooting)
-   watch -n 0.5 "ls /Volumes/ | grep -E 'NICENANO|NRF52BOOT'"
+   cp build/left/zephyr/zmk.uf2 /Volumes/NICENANO/
    ```
-   
-   - Drive automatically ejects and keyboard reboots
-   - Repeat process for other half
 
 3. **Verify installation**:
    - Both halves should reconnect automatically
