@@ -13,17 +13,18 @@ NC='\033[0m' # No Color
 
 # Check arguments
 if [ $# -ne 2 ]; then
-    echo "Usage: $0 <firmware.zip> <left|right>"
+    echo "Usage: $0 <firmware.zip|firmware.uf2> <left|right>"
     echo "Example: $0 firmware.zip left"
+    echo "Example: $0 build/left/zephyr/zmk.uf2 left"
     exit 1
 fi
 
-ZIP_FILE="$1"
+FIRMWARE_FILE="$1"
 PART="$2"
 
-# Validate zip file exists
-if [ ! -f "$ZIP_FILE" ]; then
-    echo -e "${RED}Error: File '$ZIP_FILE' not found${NC}"
+# Validate firmware file exists
+if [ ! -f "$FIRMWARE_FILE" ]; then
+    echo -e "${RED}Error: File '$FIRMWARE_FILE' not found${NC}"
     exit 1
 fi
 
@@ -33,19 +34,29 @@ if [ "$PART" != "left" ] && [ "$PART" != "right" ]; then
     exit 1
 fi
 
-# Create temp directory for extraction
-TEMP_DIR=$(mktemp -d)
-trap "rm -rf $TEMP_DIR" EXIT
+# Check if the file is a zip or direct UF2
+if [[ "$FIRMWARE_FILE" == *.zip ]]; then
+    # Create temp directory for extraction
+    TEMP_DIR=$(mktemp -d)
+    trap "rm -rf $TEMP_DIR" EXIT
 
-echo -e "${YELLOW}Extracting firmware...${NC}"
-unzip -q "$ZIP_FILE" -d "$TEMP_DIR"
+    echo -e "${YELLOW}Extracting firmware...${NC}"
+    unzip -q "$FIRMWARE_FILE" -d "$TEMP_DIR"
 
-# Find the UF2 file for the specified part
-UF2_FILE="$TEMP_DIR/temper_${PART}.uf2"
-if [ ! -f "$UF2_FILE" ]; then
-    echo -e "${RED}Error: temper_${PART}.uf2 not found in zip file${NC}"
-    echo "Contents of zip:"
-    ls -la "$TEMP_DIR"
+    # Find the UF2 file for the specified part
+    UF2_FILE="$TEMP_DIR/temper_${PART}.uf2"
+    if [ ! -f "$UF2_FILE" ]; then
+        echo -e "${RED}Error: temper_${PART}.uf2 not found in zip file${NC}"
+        echo "Contents of zip:"
+        ls -la "$TEMP_DIR"
+        exit 1
+    fi
+elif [[ "$FIRMWARE_FILE" == *.uf2 ]]; then
+    # Direct UF2 file provided
+    UF2_FILE="$FIRMWARE_FILE"
+    echo -e "${YELLOW}Using UF2 file directly...${NC}"
+else
+    echo -e "${RED}Error: File must be a .zip or .uf2 file${NC}"
     exit 1
 fi
 

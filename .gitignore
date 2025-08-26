@@ -4,3 +4,4 @@ build/
 modules/
 zephyr/
 zmk/
+firmware/

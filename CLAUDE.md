@@ -71,11 +71,10 @@ Custom behaviors are defined in the keymap file's top section. Follow existing p
    
    **Local build (preferred for development)**:
    ```bash
-   # Build locally using nix shell
-   nix-shell shell.nix --run "export CMAKE_PREFIX_PATH=\$CMAKE_PREFIX_PATH:$(pwd)/zephyr/share/zephyr-package/cmake && export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb && export GNUARMEMB_TOOLCHAIN_PATH=/nix/store/.../gcc-arm-embedded-... && export CC=.../bin/arm-none-eabi-gcc && west build -s zmk/app -b nice_nano_v2 -d build/left -- -DSHIELD=temper_left -DZMK_CONFIG=$(pwd)"
-   
-   # Or for both halves
-   west build -s zmk/app -b nice_nano_v2 -d build/right -- -DSHIELD=temper_right -DZMK_CONFIG=$(pwd)
+   # Build both halves (or specify left/right)
+   ./build.sh          # builds both halves
+   ./build.sh left     # builds left half only
+   ./build.sh right    # builds right half only
    ```
    
    **GitHub Actions build**:
