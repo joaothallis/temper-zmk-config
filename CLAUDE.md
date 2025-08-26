@@ -48,6 +48,23 @@ The keyboard has 5 layers:
 
 **User Preference**: Always assume the user is using the QWERTY layer (layer 1) instead of the default Colemak layer (layer 0).
 
+### Important: Git Push Workflow
+**Always rebase before pushing!** The GitHub Actions workflow automatically creates commits after each push (for keymap visualization), which causes branch divergence. To avoid conflicts:
+
+```bash
+# Before pushing any commits:
+git pull --rebase origin main
+# If GPG signing fails during rebase:
+git -c commit.gpgsign=false rebase --continue
+
+# Then push your changes:
+git push origin main
+# Or if necessary (with caution):
+git push --force-with-lease origin main
+```
+
+This is necessary because the `doc.yml` workflow commits updated keymap images after every push, creating a divergent history.
+
 ### Modifying Keymaps
 When editing `temper.keymap`:
 - Use ZMK keycodes (e.g., `&kp`, `&mt`, `&lt`)
@@ -140,6 +157,28 @@ Custom behaviors are defined in the keymap file's top section. Follow existing p
 - This is normal! I/O errors during UF2 flash usually indicate success
 - The drive auto-ejects when flash completes, causing the "error"
 - Check if drive disappeared - this confirms successful flash
+
+### Finding Key Locations
+
+When asked about key locations (e.g., "where is @?"), **always read the keymap file** to provide accurate information:
+
+```bash
+# Read the keymap file to find key locations
+cat boards/shields/temper/temper.keymap
+```
+
+The keymap file contains all layers:
+- **default_layer** (lines 89-101): QWERTY layout (user's primary layer)
+- **colemak_layer** (lines 102-114): Alternative Colemak layout
+- **num_layer** (lines 115-127): Numbers and symbols - accessed by holding left thumb key
+- **nav_layer** (lines 129-141): Navigation keys - accessed by holding right thumb key  
+- **fun_layer** (lines 143-155): Function keys and Bluetooth - accessed by holding both NUM+NAV
+
+To answer key location questions:
+1. Read the keymap file
+2. Find the key in the appropriate layer
+3. Map its position to QWERTY physical locations (since user uses QWERTY)
+4. Explain how to access it (which layer, which modifier key to hold)
 
 ### Common Tasks
 - **Toggle QWERTY layer**: Defined on FUN layer
