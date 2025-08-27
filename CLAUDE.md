@@ -180,6 +180,25 @@ To answer key location questions:
 3. Map its position to QWERTY physical locations (since user uses QWERTY)
 4. Explain how to access it (which layer, which modifier key to hold)
 
+### Drawing Keymap Visualization Locally
+
+To generate keymap visualizations locally (useful for testing before GitHub Actions):
+
+```bash
+# 1. Parse the keymap file to YAML format
+nix-shell -p python3Packages.keymap-drawer --run "keymap parse -z boards/shields/temper/temper.keymap -c 10 > keymap_img/temper.yaml"
+
+# 2. Draw the SVG visualization using the chocofi layout
+nix-shell -p python3Packages.keymap-drawer --run "keymap -c keymap_img/keymap_drawer.config.yaml draw -k chocofi keymap_img/temper.yaml > keymap_img/temper.svg"
+
+# Alternative: Combined one-liner
+nix-shell -p python3Packages.keymap-drawer --run "keymap parse -z boards/shields/temper/temper.keymap -c 10 | keymap -c keymap_img/keymap_drawer.config.yaml draw -k chocofi /dev/stdin > keymap_img/temper.svg"
+```
+
+This generates:
+- `keymap_img/temper.yaml` - Parsed keymap data
+- `keymap_img/temper.svg` - Visual keymap representation
+
 ### Common Tasks
 - **Toggle QWERTY layer**: Defined on FUN layer
 - **Bluetooth pairing**: BT_SEL commands on FUN layer
