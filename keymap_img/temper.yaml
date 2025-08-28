@@ -4,41 +4,23 @@ layers:
   - [Q, W, E, R, T, Y, U, I, O, P]
   - - A
     - S
-    - {t: D, h: ⌃}
+    - {t: D, h: LCTRL}
     - F
     - G
     - H
     - J
     - K
     - L
-    - {t: ;, s: ':'}
-  - - Z
-    - X
-    - C
-    - V
-    - B
-    - N
-    - M
-    - {t: ',', s: <}
-    - {t: ., s: '>'}
-    - /
-  - - ⌘
+    - ;
+  - [Z, X, C, V, B, N, M, ',', ., /]
+  - - LGUI
     - num
-    - {t: ⇧, s: ⇪}
+    - {t: LSHFT, s: '&caps_word'}
     - SPACE
     - nav
     - {t: BACKSPACE, s: Alt+BACKSPACE}
   colemak:
-  - - Q
-    - W
-    - F
-    - P
-    - B
-    - J
-    - L
-    - U
-    - Y
-    - {t: '''', s: '"'}
+  - [Q, W, F, P, B, J, L, U, Y, '''']
   - [A, R, S, T, G, M, N, E, I, O]
   - - Z
     - X
@@ -57,27 +39,18 @@ layers:
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   num:
-  - - {t: '`', s: '~'}
-    - '@'
-    - '{'
-    - '}'
-    - '%'
-    - '*'
-    - '7'
-    - '8'
-    - '9'
-    - {t: '-', s: _}
+  - ['`', '@', '{', '}', '%', '*', '7', '8', '9', '-']
   - [^, '#', (, ), $, _, '4', '5', '6', +]
   - - {t: '&', s: '|'}
     - <
-    - {t: '[', s: '{'}
-    - {t: ']', s: '}'}
+    - '['
+    - ']'
     - '>'
     - {t: /, s: \}
     - '1'
     - '2'
     - '3'
-    - {t: '=', s: +}
+    - '='
   - - {t: ▽, type: trans}
     - {type: held}
     - {t: ▽, type: trans}
@@ -93,17 +66,17 @@ layers:
     - {t: ▽, type: trans}
     - HOME
     - END
-    - ↹
+    - TAB
     - {t: BACKSPACE, s: Alt+BACKSPACE}
-  - - {t: ⇧, h: sticky}
-    - {t: ⌃, h: sticky}
-    - {t: ⎇, h: sticky}
-    - {t: ⌘, h: sticky}
-    - ↹
-    - ←
-    - ↓
-    - ↑
-    - →
+  - - {t: LSHFT, h: sticky}
+    - {t: LCTRL, h: sticky}
+    - {t: LALT, h: sticky}
+    - {t: LGUI, h: sticky}
+    - TAB
+    - LEFT
+    - DOWN
+    - UP
+    - RIGHT
     - {t: ESC, s: '`'}
   - - {t: ▽, type: trans}
     - DEL
@@ -112,7 +85,7 @@ layers:
     - \
     - {t: ▽, type: trans}
     - RET
-    - {t: '''', s: '"'}
+    - ''''
     - {t: ▽, type: trans}
     - {t: ▽, type: trans}
   - - {t: ▽, type: trans}
