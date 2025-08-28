@@ -1,133 +1,150 @@
 layout: {zmk_keyboard: temper}
 layers:
-  default:
-  - [Q, W, E, R, T, Y, U, I, O, P]
-  - - A
-    - S
-    - {t: D, h: LCTRL}
-    - F
-    - G
-    - H
-    - J
-    - K
-    - L
-    - ;
-  - [Z, X, C, V, B, N, M, ',', ., /]
-  - - LGUI
-    - num
-    - {t: LSHFT, s: '&caps_word'}
-    - SPACE
-    - nav
-    - {t: BACKSPACE, s: Alt+BACKSPACE}
-  colemak:
-  - [Q, W, F, P, B, J, L, U, Y, '''']
-  - [A, R, S, T, G, M, N, E, I, O]
-  - - Z
-    - X
-    - C
-    - D
-    - V
-    - K
-    - H
-    - {t: ',', s: ;}
-    - {t: ., s: ':'}
-    - {t: '?', s: '!'}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  num:
-  - ['`', '@', '{', '}', '%', '*', '7', '8', '9', '-']
-  - [^, '#', (, ), $, _, '4', '5', '6', +]
-  - - {t: '&', s: '|'}
-    - <
-    - '['
-    - ']'
-    - '>'
-    - {t: /, s: \}
-    - '1'
-    - '2'
-    - '3'
-    - '='
-  - - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
-    - '0'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  nav:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - HOME
-    - END
-    - TAB
-    - {t: BACKSPACE, s: Alt+BACKSPACE}
-  - - {t: LSHFT, h: sticky}
-    - {t: LCTRL, h: sticky}
-    - {t: LALT, h: sticky}
-    - {t: LGUI, h: sticky}
-    - TAB
-    - LEFT
-    - DOWN
-    - UP
-    - RIGHT
-    - {t: ESC, s: '`'}
-  - - {t: ▽, type: trans}
-    - DEL
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - \
-    - {t: ▽, type: trans}
-    - RET
-    - ''''
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
+  base:
+  - {t: Q, s: ↹}
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - {t: '''', h: move, s: '"'}
+  - {t: Z, h: ⇧}
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - {t: ',', s: <}
+  - {t: ., s: '>'}
+  - {t: /, h: ⇧}
+  - {t: ESC, h: ⎇}
+  - {t: BSPC, h: ⌘}
+  - {t: ↹, h: ⌃}
+  - {t: RET, h: Meh+⌘}
+  - {t: SPACE, h: symb}
+  - {t: BSPC, h: move}
+  symb:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - {t: '-', s: _}
+  - {t: '=', s: +}
+  - {t: '`', s: '~'}
+  - {t: ;, s: ':'}
+  - ⇧
+  - F8
+  - F9
+  - F10
+  - F11
+  - F12
+  - {t: ▽, type: trans}
+  - {t: '[', s: '{'}
+  - {t: ']', s: '}'}
+  - \
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  move:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - HOME
+  - END
+  - PG DN
+  - PG UP
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - ↑
+  - →
+  - {type: held}
+  - {t: ▽, type: trans}
+  - PREV
+  - STOP
+  - PP
+  - NEXT
+  - BRI DN
+  - BRI UP
+  - VOL DN
+  - VOL UP
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   fun:
-  - - {t: colemak, h: toggle}
-    - MUTE
-    - VOL DN
-    - VOL UP
-    - OUT TOG
-    - {t: ▽, type: trans}
-    - F7
-    - F8
-    - F9
-    - F12
-  - - {t: BT, h: '0'}
-    - {t: BT, h: '1'}
-    - {t: BT, h: '2'}
-    - {t: BT, h: '3'}
-    - {t: BT, h: '4'}
-    - {t: ▽, type: trans}
-    - F4
-    - F5
-    - F6
-    - F11
-  - - BT CLR
-    - PREV
-    - PP
-    - NEXT
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - F1
-    - F2
-    - F3
-    - F10
-  - - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - MUTE
+  - VOL DN
+  - VOL UP
+  - OUT TOG
+  - {t: ▽, type: trans}
+  - F7
+  - F8
+  - F9
+  - F12
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - {t: BT, h: '3'}
+  - {t: BT, h: '4'}
+  - {t: ▽, type: trans}
+  - F4
+  - F5
+  - F6
+  - {t: F11, type: held}
+  - BT CLR
+  - PREV
+  - PP
+  - NEXT
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - F1
+  - F2
+  - F3
+  - F10
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
