@@ -1,133 +1,262 @@
 layout: {zmk_keyboard: temper}
 layers:
-  default:
-  - [Q, W, E, R, T, Y, U, I, O, P]
-  - - A
-    - S
-    - {t: D, h: LCTRL}
-    - F
-    - G
-    - H
-    - J
-    - K
-    - L
-    - ;
-  - [Z, X, C, V, B, N, M, ',', ., /]
-  - - LGUI
-    - num
-    - {t: LSHFT, s: '&caps_word'}
-    - SPACE
-    - nav
-    - {t: BACKSPACE, s: Alt+BACKSPACE}
-  colemak:
-  - [Q, W, F, P, B, J, L, U, Y, '''']
-  - [A, R, S, T, G, M, N, E, I, O]
-  - - Z
-    - X
-    - C
-    - D
-    - V
-    - K
-    - H
-    - {t: ',', s: ;}
-    - {t: ., s: ':'}
-    - {t: '?', s: '!'}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  num:
-  - ['`', '@', '{', '}', '%', '*', '7', '8', '9', '-']
-  - [^, '#', (, ), $, _, '4', '5', '6', +]
-  - - {t: '&', s: '|'}
-    - <
-    - '['
-    - ']'
-    - '>'
-    - {t: /, s: \}
-    - '1'
-    - '2'
-    - '3'
-    - '='
-  - - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
-    - '0'
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  nav:
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - HOME
-    - END
-    - TAB
-    - {t: BACKSPACE, s: Alt+BACKSPACE}
-  - - {t: LSHFT, h: sticky}
-    - {t: LCTRL, h: sticky}
-    - {t: LALT, h: sticky}
-    - {t: LGUI, h: sticky}
-    - TAB
-    - LEFT
-    - DOWN
-    - UP
-    - RIGHT
-    - {t: ESC, s: '`'}
-  - - {t: ▽, type: trans}
-    - DEL
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - \
-    - {t: ▽, type: trans}
-    - RET
-    - ''''
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-  - - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
-  fun:
-  - - {t: colemak, h: toggle}
-    - MUTE
-    - VOL DN
-    - VOL UP
-    - OUT TOG
-    - {t: ▽, type: trans}
-    - F7
-    - F8
-    - F9
-    - F12
-  - - {t: BT, h: '0'}
-    - {t: BT, h: '1'}
-    - {t: BT, h: '2'}
-    - {t: BT, h: '3'}
-    - {t: BT, h: '4'}
-    - {t: ▽, type: trans}
-    - F4
-    - F5
-    - F6
-    - F11
-  - - BT CLR
-    - PREV
-    - PP
-    - NEXT
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - F1
-    - F2
-    - F3
-    - F10
-  - - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
-    - {t: ▽, type: trans}
-    - {type: held}
-    - {t: ▽, type: trans}
+  Default:
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - {t: ;, s: ':'}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - {t: ',', s: <}
+  - {t: ., s: '>'}
+  - /
+  - PLAY PAUSE
+  - ⌃
+  - ⎇
+  - RIGHT SHIFT
+  - SPACE
+  - {t: Symbols, h: toggle}
+  - LEFT WIN
+  - 'VOL
+
+    MUTE'
+  Symbols:
+  - ESC
+  - '@'
+  - '#'
+  - $
+  - '%'
+  - ^
+  - '&'
+  - '*'
+  - '!'
+  - BACKSPACE
+  - ↹
+  - {t: '=', s: +}
+  - +
+  - {t: '-', s: _}
+  - _
+  - '{'
+  - (
+  - )
+  - '}'
+  - ENTER
+  - {t: Function_&_Media, h: toggle}
+  - {t: '`', s: '~'}
+  - '~'
+  - '|'
+  - {t: \, s: '|'}
+  - '['
+  - '"'
+  - {t: '''', s: '"'}
+  - ']'
+  - {t: Navigation, h: toggle}
+  - X
+  - ⌃
+  - {t: Default, h: toggle}
+  - RIGHT SHIFT
+  - SPACE
+  - {t: Numbers, h: toggle}
+  - ⎇
+  - Y
+  Navigation:
+  - ⎋
+  - '&mkp LCLK'
+  - '&mmv MOVE_UP'
+  - '&mkp RCLK'
+  - {t: ▽, type: trans}
+  - '&msc SCRL_LEFT'
+  - '&msc SCRL_DOWN'
+  - '&msc SCRL_UP'
+  - '&msc SCRL_RIGHT'
+  - BACKSPACE
+  - ↹
+  - '&mmv MOVE_LEFT'
+  - '&mmv MOVE_DOWN'
+  - '&mmv MOVE_RIGHT'
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - UP ARROW
+  - →
+  - ENTER
+  - {t: Function_&_Media, h: toggle}
+  - LEFT WIN
+  - '&mkp MCLK'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: Navigation, h: toggle}
+  - {t: ▽, type: trans}
+  - ⌃
+  - {t: Default, h: toggle}
+  - LEFT SHIFT
+  - SPACE
+  - {t: Navigation, h: toggle}
+  - ⎇
+  - {t: ▽, type: trans}
+  Numbers:
+  - ⎋
+  - CAPS
+  - SCROLLLOCK
+  - KP NUMLOCK
+  - PG UP
+  - HOME
+  - '7'
+  - '8'
+  - '9'
+  - BACKSPACE
+  - Sft+↹
+  - Sft+CUT
+  - Sft+COPY
+  - Sft+PASTE
+  - Sft+PG DN
+  - END
+  - '4'
+  - '5'
+  - '6'
+  - ENTER
+  - {t: Function_&_Media, h: toggle}
+  - INSERT
+  - UNDO
+  - REDO
+  - DELETE
+  - '0'
+  - '1'
+  - '2'
+  - '3'
+  - {t: Navigation, h: toggle}
+  - {t: ▽, type: trans}
+  - ⌃
+  - {t: Default, h: toggle}
+  - LEFT SHIFT
+  - SPACE
+  - {t: Symbols, h: toggle}
+  - ⎇
+  - {t: ▽, type: trans}
+  Function_&_Media:
+  - ⎋
+  - ☀↓
+  - {t: ▽, type: trans}
+  - ☀↑
+  - {t: ▽, type: trans}
+  - F9
+  - F10
+  - F11
+  - F12
+  - BACKSPACE
+  - ↹
+  - PREVIOUS
+  - PLAY PAUSE
+  - NEXT
+  - {t: ▽, type: trans}
+  - F5
+  - F6
+  - F7
+  - F8
+  - ENTER
+  - {t: Function_&_Media, h: toggle}
+  - {t: ▽, type: trans}
+  - 'VOL
+
+    MUTE'
+  - {t: ▽, type: trans}
+  - {t: settings, h: toggle}
+  - F1
+  - F2
+  - F3
+  - F4
+  - {t: Navigation, h: toggle}
+  - {t: ▽, type: trans}
+  - ⌃
+  - {t: Default, h: toggle}
+  - LEFT SHIFT
+  - SPACE
+  - {t: Numbers, h: toggle}
+  - ⎇
+  - {t: ▽, type: trans}
+  settings:
+  - ⎋
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - BT CLR
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - BACKSPACE
+  - ↹
+  - {t: ▽, type: trans}
+  - BT NXT
+  - BT PRV
+  - BT CLR ALL
+  - {t: ▽, type: trans}
+  - '&bootloader'
+  - '&studio_unlock'
+  - '&sys_reset'
+  - ENTER
+  - {t: Function_&_Media, h: toggle}
+  - {t: ▽, type: trans}
+  - OUT BLE
+  - OUT USB
+  - {t: settings, h: toggle}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: Navigation, h: toggle}
+  - {t: ▽, type: trans}
+  - ⌃
+  - {t: Default, h: toggle}
+  - LEFT SHIFT
+  - SPACE
+  - {t: Numbers, h: toggle}
+  - ⎇
+  - {t: ▽, type: trans}
+combos:
+- p: [16, 17]
+  k: ENTER
+  l: [Default]
+- p: [0, 1]
+  k: ↹
+  l: [Default]
+- p: [22, 23]
+  k: Ctl+BACKSPACE
+  l: [Default]
+- p: [28, 27]
+  k: {t: '''', s: '"'}
+  l: [Default]
+- p: [20, 21]
+  k: Ctl+LEFT SHIFT
+  l: [Default]
+- p: [12, 13]
+  k: BACKSPACE
+  l: [Default]
+- p: [13, 12]
+  k: Alt+LEFT SHIFT
+  l: [Numbers]
